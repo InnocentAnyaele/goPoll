@@ -11,7 +11,7 @@ import axios from 'axios'
 import CircularProgress from '@mui/material/CircularProgress';
 import Box from '@mui/material/Box'
 import {useNavigate} from 'react-router-dom'
-import { getOptionsFromChildren } from '@mui/base'
+// import { getOptionsFromChildren } from '@mui/base'
 import Navigation from '../nav/Nav'
 
 function VotePoll() {
@@ -31,13 +31,14 @@ function VotePoll() {
 
     const [isPollCreator, setIsPollCreator] = useState(false)
     // const [hasUserVoted, setHasUserVoted] = useState(false)
-    const [poll, setPoll] = useState('')
-    const [voters, setVoters] = useState([])
-    const [pollCloseAt, setPollCloseAt] = useState([])
-    const [pollCreated, setPollCreated] = useState('')
-    const [hasVotes, setHasVotes] = useState(false)
+    // const [poll, setPoll] = useState('')
+    // const [voters, setVoters] = useState([])
+    // const [pollCloseAt, setPollCloseAt] = useState([])
+    // const [pollCreated, setPollCreated] = useState('')
+    // const [hasVotes, setHasVotes] = useState(false)
 
      useEffect(()=> {
+      document.title = 'GoPoll Vote'
         axios.get(`http://127.0.0.1:8000/checkVote/${pollID}/${pollLink}/${userMail}/`)
         .then((res) => {
             if (res.status === 200) {
@@ -45,36 +46,36 @@ function VotePoll() {
               const pollNameRes:any = res.data.poll[0].pollName
               const pollRes:any = res.data.poll[0]
               const pollClose:any = new Date(res.data.poll[0].pollCloseAt)
-              const pollCreated:any = res.data.poll[0].pollCreated
+              // const pollCreated:any = res.data.poll[0].pollCreated
               let currentDate = new Date()
               const userMailRes = res.data.poll[0].userMail
               const voterRes:any = res.data.voters
 
               setOptions(optionsRes)
               setPollName(pollNameRes)
-              setPoll(pollRes)
-              setPollCloseAt(pollClose)
-              setPollCreated(pollCreated)
-              setVoters(voterRes)
+              // setPoll(pollRes)
+              // setPollCloseAt(pollClose)
+              // setPollCreated(pollCreated)
+              // setVoters(voterRes)
 
               if (userMail === userMailRes){
                 console.log(res.data.poll[0].userMail)
                 setIsPollCreator(true)
               }
 
-              if (voterRes.length > 0){
-                setHasVotes(true)
-              }
+              // if (voterRes.length > 0){
+              //   setHasVotes(true)
+              // }
 
               
               if (currentDate >= pollClose || res.data.has_user_voted){
                 console.log('user has voted')
                 // history(0)
-                history(`resultPoll/${pollID}/${pollLink}`)
+                history(`../resultPoll/${pollID}/${pollLink}`)
               }
 
               console.log('poll creator' ,isPollCreator)
-              console.log('has votes ', hasVotes)
+              // console.log('has votes ', hasVotes)
               console.log('voters', voterRes)
               console.log(pollNameRes)
               console.log(optionsRes)
@@ -93,7 +94,7 @@ function VotePoll() {
             setError('Something went wrong')
             return
         })
-    },[])
+    })
 
 
 //     function radioHandler(e:any) {

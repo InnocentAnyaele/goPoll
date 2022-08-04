@@ -18,31 +18,32 @@ function ResultPoll() {
     const [error, setError] = useState('')
     const [loading, setLoading] = useState(true)
 
-    const [optionID, setOptionID] = useState('')
+    // const [optionID, setOptionID] = useState('')
     
 
-    const [pollName, setPollName] = useState('')
+    // const [pollName, setPollName] = useState('')
 
     const [isPollCreator, setIsPollCreator] = useState(false)
     // const [hasUserVoted, setHasUserVoted] = useState(false)
-    const [poll, setPoll] = useState('')
+    // const [poll, setPoll] = useState('')
     const [voters, setVoters] = useState([])
-    const [pollCloseAt, setPollCloseAt] = useState([])
-    const [pollCreated, setPollCreated] = useState('')
-    const [hasVotes, setHasVotes] = useState(false)
+    // const [pollCloseAt, setPollCloseAt] = useState([])
+    // const [pollCreated, setPollCreated] = useState('')
+    // const [hasVotes, setHasVotes] = useState(false)
     const [anonymous, setAnonymous] = useState(false)
     const [totalVote, setTotalVotes] = useState(0)
     
 
      useEffect(()=> {
+      document.title = 'GoPoll Results'
         axios.get(`http://127.0.0.1:8000/checkVote/${pollID}/${pollLink}/${userMail}/`)
         .then((res) => {
             if (res.status === 200) {
               const optionsRes:any = res.data.options
-              const pollNameRes:any = res.data.poll[0].pollName
-              const pollRes:any = res.data.poll[0]
+              // const pollNameRes:any = res.data.poll[0].pollName
+              // const pollRes:any = res.data.poll[0]
               const pollClose:any = new Date(res.data.poll[0].pollCloseAt)
-              const pollCreated:any = res.data.poll[0].pollCreated
+              // const pollCreated:any = res.data.poll[0].pollCreated
               const anonymousRes:any = res.data.poll[0].anonymous
               let currentDate = new Date()
               const userMailRes = res.data.poll[0].userMail
@@ -51,10 +52,10 @@ function ResultPoll() {
 
 
               setOptions(optionsRes)
-              setPollName(pollNameRes)
-              setPoll(pollRes)
-              setPollCloseAt(pollClose)
-              setPollCreated(pollCreated)
+              // setPollName(pollNameRes)
+              // setPoll(pollRes)
+              // setPollCloseAt(pollClose)
+              // setPollCreated(pollCreated)
               setVoters(voterRes)
               setAnonymous(anonymousRes)
               setTotalVotes(totalVoteRes)
@@ -64,15 +65,15 @@ function ResultPoll() {
                 setIsPollCreator(true)
               }
 
-              if (voterRes.length > 0){
-                setHasVotes(true)
-              }
+              // if (voterRes.length > 0){
+              //   setHasVotes(true)
+              // }
 
               
               if (res.data.has_user_voted === false && currentDate <= pollClose){
                 console.log('user has voted')
                 // history(0)
-                history(`votePoll/${pollID}/${pollLink}`)
+                history(`../votePoll/${pollID}/${pollLink}`)
               }
               
               // console.log(res.data)
@@ -99,7 +100,7 @@ function ResultPoll() {
             setError('Something went wrong')
             return
         })
-    },[])
+    })
 
   return (
     <div style={{display: 'flex', flexDirection: 'column', alignItems: 'center', margin: '30px'}}>
@@ -145,7 +146,7 @@ function ResultPoll() {
 
    <div style={{padding: '10px'}}>
      { voters.map((voter) => (
-       <div key= {voter['id']} >
+       <div key= {voter['id']} style={{padding: '2px'}} >
        <span style={{color: 'blue'}}>
          {voter['voterMail']}
        </span>

@@ -26,6 +26,7 @@ function ViewPolls() {
 
 
   useEffect(() => {
+    console.log('reached effect')
     axios.get(`viewPolls/${userMail}/`)
     .then((res) => {
       if (res.status === 200) {
