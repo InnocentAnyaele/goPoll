@@ -51,6 +51,7 @@ function ViewPolls() {
     axios.delete(`deletePoll/${deleteID}`)
     .then((res) => {
         if (res.status === 200) {
+          console.log(res.data)
           setAlertVariant('success')
           setError('Poll deleted')
           // setTimeout(function() {
@@ -58,6 +59,12 @@ function ViewPolls() {
           // }, 2000);
           window.location.reload();
           return
+        }
+        else if(res.status === 500){
+          console.log(res.data)
+          setAlertVariant('error')
+          setError('Could not delete')
+          return 
         }
 
     })

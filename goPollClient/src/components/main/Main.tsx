@@ -38,6 +38,9 @@ function Main() {
       {/* <MainButton className='create-poll-button' name="Create or Go to Poll" type="contained" /> */}
       <Button className = 'create-poll-button' variant='contained' onClick={handleLogin}>Create or Go to Poll</Button>
       <Button className='register' variant='text' onClick={() =>{ setRegisterState('register'); setOpen(true); }} >Register</Button>
+      <div style={{width: '400px', textAlign: 'center', margin: '15px'}}>
+        <span>contact developer @ <span style={{color: 'blue'}}>innocentanyaele2000@gmail.com</span> <br></br> for suggestions & concerns </span>
+      </div>
     </div>
   )
 }

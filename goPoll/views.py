@@ -221,11 +221,11 @@ def deletePoll(request, pollID):
     # this request will take in the user mail and will be passed in as a filter to the objects
     if request.method == 'DELETE':
         try:
-            Poll.objects.filter(pollID = pollID).delete()
+            Poll.objects.filter(id = pollID).delete()
             return JsonResponse({'data': 'Poll deleted!', 'status': status.HTTP_200_OK})
 
         except Exception as e:
-            return JsonResponse({'data' : 'Something went wrong', 'status': status.HTTP_500_INTERNAL_SERVER_ERROR})
+            return JsonResponse({'data' : e, 'status': status.HTTP_500_INTERNAL_SERVER_ERROR})
  
 
 @api_view(['DELETE'])

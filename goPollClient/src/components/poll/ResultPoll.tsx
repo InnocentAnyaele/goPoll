@@ -17,7 +17,6 @@ function ResultPoll() {
     const [options, setOptions] = useState([])
     const [error, setError] = useState('')
     const [loading, setLoading] = useState(true)
-    const [voteLoading, setVoteLoading] = useState(false)
 
     const [optionID, setOptionID] = useState('')
     
@@ -75,16 +74,17 @@ function ResultPoll() {
                 // history(0)
                 history(`votePoll/${pollID}/${pollLink}`)
               }
-              console.log(res.data)
-              console.log('has user voted', res.data.has_user_voted )
-              console.log('poll creator' ,isPollCreator)
-              console.log('has votes ', hasVotes)
-              console.log('voters', voterRes)
-              console.log('pollCloseAt', pollClose)
-              console.log('pollName',pollNameRes)
-              console.log('options', optionsRes)
-              console.log('poll',pollRes)
-              console.log('totalVotes', totalVoteRes)
+              
+              // console.log(res.data)
+              // console.log('has user voted', res.data.has_user_voted )
+              // console.log('poll creator' ,isPollCreator)
+              // console.log('has votes ', hasVotes)
+              // console.log('voters', voterRes)
+              // console.log('pollCloseAt', pollClose)
+              // console.log('pollName',pollNameRes)
+              // console.log('options', optionsRes)
+              // console.log('poll',pollRes)
+              // console.log('totalVotes', totalVoteRes)
               
                 setLoading(false)
             }
@@ -100,32 +100,6 @@ function ResultPoll() {
             return
         })
     },[])
-
-
-
-    // useEffect(() => {
-    //     console.log(id)
-    //     console.log(link)
-    // })
-    
-
-
-//     const results = [{
-// optionID: 1,
-// optionName: "It's a crime against God",
-// votes: 40
-//     },
-// {
-// optionID: 2,
-// optionName: "It's the only way pizza should be eaten",
-// votes: 10
-//     },
-// {
-// optionID: 3,
-// optionName: "Neutral",
-// votes: 70
-//     }]
-
 
   return (
     <div style={{display: 'flex', flexDirection: 'column', alignItems: 'center', margin: '30px'}}>
@@ -157,7 +131,35 @@ function ResultPoll() {
     }
 </div>
 </div>
-                }
+}
+
+
+
+{
+
+
+  !loading && !anonymous && isPollCreator ?
+
+  <div style={{display: 'flex', flexDirection : 'column', alignItems: 'center'}}>
+            <h3 style={{marginBottom: '10px'}}>voters go<span style={{color: 'blue', fontWeight: 'bolder'}}>POLL</span></h3>
+
+   <div style={{padding: '10px'}}>
+     { voters.map((voter) => (
+       <div key= {voter['id']} >
+       <span style={{color: 'blue'}}>
+         {voter['voterMail']}
+       </span>
+       </div>
+
+     ))
+     }
+   </div>
+
+</div>
+
+
+  : null
+}
 
 
   

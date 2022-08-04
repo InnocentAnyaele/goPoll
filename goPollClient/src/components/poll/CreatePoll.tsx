@@ -50,6 +50,7 @@ try {
     if (res.status === 201){
       setSeverity('success')
       setError('Poll created')
+      window.location.reload();
       return 
     }
     else {
