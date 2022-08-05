@@ -22,7 +22,7 @@ from goPoll.serializers import PollSerializer, VotesSerializer, OptionsSerialize
 
 # @api_view(['POST'])
 def index(request):   
-    return render(request, 'index.html')
+    return render(request, "index.html")
 
 
 @api_view(['POST'])
