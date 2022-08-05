@@ -40,7 +40,7 @@ DEBUG = env('DEBUG', cast=bool)
 
 # ALLOWED_HOSTS = []
 # ALLOWED_HOSTS = ['gopoll.herokuapp.com']
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*', 'gopoll.herokuapp.com']
 
 
 
