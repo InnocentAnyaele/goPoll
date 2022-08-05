@@ -39,6 +39,7 @@ DEBUG = env('DEBUG', cast=bool)
 
 
 # ALLOWED_HOSTS = []
+# ALLOWED_HOSTS = ['gopoll.herokuapp.com']
 ALLOWED_HOSTS = []
 
 
@@ -100,6 +101,7 @@ DATABASES = {
     #     'ENGINE': 'django.db.backends.sqlite3',
     #     'NAME': BASE_DIR / 'db.sqlite3',
     # }
+    
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': env('NAME'),
@@ -165,7 +167,7 @@ STATICFILES_DIRS = [
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 import dj_database_url
-prod_db = dj_database_url.config(conn_max_age=500)
-DATABASES['default'].update(prod_db)
+db_from_env = dj_database_url.config(conn_max_age=500)
+DATABASES['default'].update(db_from_env)
 
 django_heroku.settings(locals())
