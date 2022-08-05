@@ -22,7 +22,7 @@ from goPoll.serializers import PollSerializer, VotesSerializer, OptionsSerialize
 
 # @api_view(['POST'])
 def home(request):   
-    return HttpResponse('This is where the build/index.html will be linked to the django')
+    return render(request, 'index.html')
 
 
 @api_view(['POST'])
