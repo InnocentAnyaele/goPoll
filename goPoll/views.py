@@ -21,7 +21,7 @@ from goPoll.serializers import PollSerializer, VotesSerializer, OptionsSerialize
 # Create your views here.
 
 # @api_view(['POST'])
-def home(request):   
+def index(request):   
     return render(request, 'index.html')
 
 

@@ -1,7 +1,7 @@
 import React from 'react'
 import Box from '@mui/material/Box'
 import Typography from '@mui/material/Typography'
-import ContentCopyIcon from '@mui/icons-material/ContentCopy';
+// import ContentCopyIcon from '@mui/icons-material/ContentCopy';
 import Button from '@mui/material/Button'
 
 function SharePoll(props:any) {

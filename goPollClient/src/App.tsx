@@ -5,10 +5,19 @@ import ResultPoll from './components/poll/ResultPoll'
 import './App.css'
 import PollPrivateRoute from './components/privateRoutes/PollPrivateRoute'
 import {BrowserRouter as Router, Routes, Route} from 'react-router-dom'
+import {Helmet} from "react-helmet"
+import logo from './img/logo1.png'
 
 function App() {
   return (
     <div className="App">
+
+              <Helmet>
+                <meta charSet="utf-8" />
+                <title>GoPoll</title>
+                <link rel="icon" type="image/png" href={logo} sizes="16x16" />
+            </Helmet>
+
       {/* <Main/> */}
       {/* <Poll/> */}
       {/* <VotePoll/> */}
