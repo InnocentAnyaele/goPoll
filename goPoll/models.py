@@ -1,6 +1,7 @@
 from pyexpat import model
-from tkinter import CASCADE
+# from tkinter import CASCADE
 from django.db import models
+from django.db.models.deletion import CASCADE
 
 # Create your models here.
 
