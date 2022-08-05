@@ -12,7 +12,7 @@ https://docs.djangoproject.com/en/4.0/ref/settings/
 
 from ctypes import cast
 import os
-from tkinter.dnd import DndHandler
+# from tkinter.dnd import DndHandler
 import django_heroku
 from pathlib import Path
 import environ
