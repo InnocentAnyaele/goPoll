@@ -1,7 +1,7 @@
 from asyncore import poll
 from datetime import date, datetime
 from os import link
-from turtle import st
+# from turtle import st
 from django.shortcuts import render
 from django.http import HttpResponse, JsonResponse
 from django.urls import is_valid_path
