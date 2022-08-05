@@ -104,7 +104,7 @@ function ResultPoll() {
             setError('Something went wrong')
             return
         })
-    })
+    },[])
 
   return (
     <div style={{display: 'flex', flexDirection: 'column', alignItems: 'center', margin: '30px'}}>

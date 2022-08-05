@@ -45,7 +45,7 @@ function ViewPolls() {
       setError('Could not retrieve polls at this time')
       return 
     })
-  })
+  },[])
 
   function deletePollHandler(deleteID:any) {
     console.log(deleteID)

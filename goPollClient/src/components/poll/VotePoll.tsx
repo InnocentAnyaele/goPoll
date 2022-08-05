@@ -100,7 +100,7 @@ function VotePoll() {
             setError('Request failed')
             return
         })
-    })
+    },[])
 
 
 //     function radioHandler(e:any) {
