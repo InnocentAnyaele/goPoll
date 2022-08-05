@@ -3,7 +3,7 @@ import './Nav.css'
 import Button from '@mui/material/Button'
 import {auth} from '../../Firebase'
 import {signOut} from 'firebase/auth'
-import {useNavigate} from 'react-router-dom'
+import {useNavigate, Link} from 'react-router-dom'
 
 function Nav(props: any) {
 
@@ -20,9 +20,11 @@ function Nav(props: any) {
   const currentUser = localStorage.getItem('email')
   return (
     <div className='nav' style={{width: '100%', height: '50px', margin: '0', display: 'flex', flexDirection: 'row', justifyContent: 'space-between'}}>
+        <Link to='/'>
         <div>
           <span><GoPoll/></span>
           </div>
+        </Link>
         <div style={{padding: '5px', fontWeight: 'bold'}}>
           <span style={{fontSize: '12px'}}>{currentUser} </span>
           <Button variant='text' onClick={logOut}>Sign out</Button>

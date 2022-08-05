@@ -21,7 +21,8 @@ function ResultPoll() {
     // const [optionID, setOptionID] = useState('')
     
 
-    // const [pollName, setPollName] = useState('')
+    const [pollName, setPollName] = useState('')
+    const [pollBody, setPollBody] = useState('')
 
     const [isPollCreator, setIsPollCreator] = useState(false)
     // const [hasUserVoted, setHasUserVoted] = useState(false)
@@ -36,11 +37,13 @@ function ResultPoll() {
 
      useEffect(()=> {
       document.title = 'GoPoll Results'
-        axios.get(`http://127.0.0.1:8000/checkVote/${pollID}/${pollLink}/${userMail}/`)
+        // axios.get(`http://127.0.0.1:8000/checkVote/${pollID}/${pollLink}/${userMail}/`)
+        axios.get(`/checkVote/${pollID}/${pollLink}/${userMail}/`)
         .then((res) => {
             if (res.status === 200) {
               const optionsRes:any = res.data.options
-              // const pollNameRes:any = res.data.poll[0].pollName
+              const pollNameRes:any = res.data.poll[0].pollName
+              const pollBodyRes:any = res.data.poll[0].pollBody
               // const pollRes:any = res.data.poll[0]
               const pollClose:any = new Date(res.data.poll[0].pollCloseAt)
               // const pollCreated:any = res.data.poll[0].pollCreated
@@ -52,8 +55,9 @@ function ResultPoll() {
 
 
               setOptions(optionsRes)
-              // setPollName(pollNameRes)
+              setPollName(pollNameRes)
               // setPoll(pollRes)
+              setPollBody(pollBodyRes)
               // setPollCloseAt(pollClose)
               // setPollCreated(pollCreated)
               setVoters(voterRes)
@@ -115,8 +119,8 @@ function ResultPoll() {
     </Box> :
 
 <div>
-<h2 style={{marginBottom: '30px'}}>Pizza Discussion go<span style={{color: 'blue', fontWeight: 'bolder'}}>POLL</span></h2>
-  <span style={{fontSize: '30px', margin: '10px'}}>Should pineapple go on pizza?</span>
+<h2 style={{marginBottom: '30px'}}>{pollName}<span style={{color: 'blue', fontWeight: 'bolder'}}>POLL</span></h2>
+  <span style={{fontSize: '30px', margin: '10px'}}>{pollBody}</span>
 
 <div style={{alignItems: 'left', marginTop: '5px'}}>
  {

@@ -6,6 +6,7 @@ import axios from 'axios';
 import Checkbox from '@mui/material/Checkbox'
 import FormGroup from '@mui/material/FormGroup';
 import FormControlLabel from '@mui/material/FormControlLabel';
+import './Poll.css'
 
 
 
@@ -80,7 +81,7 @@ catch {
 
 
   return (
-        <form style={{width: '50%', marginTop: '4px'}} onSubmit={submitHandler}>
+        <form className = 'create-poll-form' style={{marginTop: '4px'}} onSubmit={submitHandler}>
     <div style={{display: 'flex', flexDirection: 'column',  margin: '10px', textAlign: 'center'}}>
         <h3 style={{margin: '0'}}>create go<span style={{color: 'blue', fontWeight: 'bolder'}}>POLL</span></h3>
     {error && <Alert severity={severity === "error" ? "error" : "success"}>{error}</Alert>}

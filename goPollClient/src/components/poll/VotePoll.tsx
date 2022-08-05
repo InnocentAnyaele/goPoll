@@ -16,6 +16,8 @@ import Navigation from '../nav/Nav'
 
 function VotePoll() {
 
+  // axios.defaults.baseURL = "http://localhost:8000";
+
     const {pollID, pollLink} = useParams()
     const history = useNavigate()
     const userMail = localStorage.getItem('email')
@@ -28,8 +30,9 @@ function VotePoll() {
     
 
     const [pollName, setPollName] = useState('')
+    const [pollBody, setPollBody] = useState('')
 
-    const [isPollCreator, setIsPollCreator] = useState(false)
+    // const [isPollCreator, setIsPollCreator] = useState(false)
     // const [hasUserVoted, setHasUserVoted] = useState(false)
     // const [poll, setPoll] = useState('')
     // const [voters, setVoters] = useState([])
@@ -39,29 +42,32 @@ function VotePoll() {
 
      useEffect(()=> {
       document.title = 'GoPoll Vote'
-        axios.get(`http://127.0.0.1:8000/checkVote/${pollID}/${pollLink}/${userMail}/`)
+        // axios.get(`http://127.0.0.1:8000/checkVote/${pollID}/${pollLink}/${userMail}/`)
+        axios.get(`/checkVote/${pollID}/${pollLink}/${userMail}/`)
         .then((res) => {
             if (res.status === 200) {
               const optionsRes:any = res.data.options
               const pollNameRes:any = res.data.poll[0].pollName
-              const pollRes:any = res.data.poll[0]
+              const pollBodyRes:any = res.data.poll[0].pollBody
+              // const pollRes:any = res.data.poll[0]
               const pollClose:any = new Date(res.data.poll[0].pollCloseAt)
               // const pollCreated:any = res.data.poll[0].pollCreated
               let currentDate = new Date()
-              const userMailRes = res.data.poll[0].userMail
-              const voterRes:any = res.data.voters
+              // const userMailRes = res.data.poll[0].userMail
+              // const voterRes:any = res.data.voters
 
               setOptions(optionsRes)
               setPollName(pollNameRes)
+              setPollBody(pollBodyRes)
               // setPoll(pollRes)
               // setPollCloseAt(pollClose)
               // setPollCreated(pollCreated)
               // setVoters(voterRes)
 
-              if (userMail === userMailRes){
-                console.log(res.data.poll[0].userMail)
-                setIsPollCreator(true)
-              }
+              // if (userMail === userMailRes){
+              //   console.log(res.data.poll[0].userMail)
+              //   setIsPollCreator(true)
+              // }
 
               // if (voterRes.length > 0){
               //   setHasVotes(true)
@@ -74,12 +80,12 @@ function VotePoll() {
                 history(`../resultPoll/${pollID}/${pollLink}`)
               }
 
-              console.log('poll creator' ,isPollCreator)
+              // console.log('poll creator' ,isPollCreator)
               // console.log('has votes ', hasVotes)
-              console.log('voters', voterRes)
-              console.log(pollNameRes)
-              console.log(optionsRes)
-              console.log(pollRes)
+              // console.log('voters', voterRes)
+              // console.log(pollNameRes)
+              // console.log(optionsRes)
+              // console.log(pollRes)
               
                 setLoading(false)
             }
@@ -91,7 +97,7 @@ function VotePoll() {
             
         })
         .catch(() => {
-            setError('Something went wrong')
+            setError('Request failed')
             return
         })
     })
@@ -105,7 +111,8 @@ function VotePoll() {
 function voteHandler(e:any) {
   e.preventDefault()
   setVoteLoading(true)
-  axios.post(`http://127.0.0.1:8000/vote/${optionID}/${pollID}/${userMail}/`)
+  // axios.post(`http://127.0.0.1:8000/vote/${optionID}/${pollID}/${userMail}/`)
+  axios.post(`/vote/${optionID}/${pollID}/${userMail}/`)
   .then((res) => {
     if (res.status === 200) {
       history(`resultPoll/${pollID}/${pollLink}`)
@@ -136,7 +143,7 @@ function voteHandler(e:any) {
     <form onSubmit={voteHandler}>
   <h2 style={{marginBottom: '30px'}}>{pollName} go<span style={{color: 'blue', fontWeight: 'bolder'}}>POLL</span></h2>
 <FormControl>
-  <FormLabel id="poll-body" style={{margin: '10px'}}>Should pineapple go on pizza?</FormLabel>
+  <FormLabel id="poll-body" style={{margin: '10px'}}>{pollBody}</FormLabel>
   <RadioGroup
     aria-labelledby="demo-radio-buttons-group-label"
     value= {optionID}
